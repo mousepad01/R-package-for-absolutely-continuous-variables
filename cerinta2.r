@@ -6,8 +6,8 @@
 # deci captez eroarea si returnez FALSE
 #
 # daca f trece de testul de integrare, 
-# se incearca RAND_TEST_CNT teste de integrare pe intervale cu capete random
-# ce formeaza intervalele suport
+# se incearca TCNT teste de integrare pe intervale cu capete random
+# din intervalele suport
 # pentru a verifica daca se obtin valor negative
 # in cazul in care nu se obtin, se considera ca a trebut testul
 #
@@ -16,9 +16,7 @@
 #           nu vor afecta calculul probabilitatilor
 #
 
-RAND_TEST_CNT <- 10000
-
-isPdf <- function(f, suport = list(c(-Inf, Inf))){
+isPdf <- function(f, suport = list(c(-Inf, Inf)), TCNT = 1000){
   
   tryCatch({
     
@@ -28,23 +26,49 @@ isPdf <- function(f, suport = list(c(-Inf, Inf))){
 
       integratedVal <- integratedVal + integrate(Vectorize(f), lower = interval[1], upper = interval[2])$value
     }
-    
-    if(integratedVal - 1 < 5e-07){
+  
+    if(integratedVal < 1 + 10e-9 & integratedVal > 1 - 10e-9){
+      
+      cnt <- TCNT / length(suport)
       
       for(interval in suport){
         
-        lowerBound <- sample(-.Machine$integer.max:.Machine$integer.max, 1)
-        upperBound <- lower_bound + 10
-
-        if(lowerBound < upperBound){
-          
-          swapAux <- upperBound
-          upperBound <- lowerBound
-          lowerBoud <- swapAux
+        lowRand <- 0
+        upperRand <- 0
+        
+        if(interval[1] == -Inf){
+          lowRand <- -.Machine$integer.max
+        }
+        else{
+          lowRand <- interval[1]
         }
         
-        if(integrate(Vectorize(f), lower = lowerBound, upper = upperBound)$value < 0)
-          return(FALSE)
+        if(interval[2] == Inf){
+          upperRand <- .Machine$integer.max
+        }
+        else{
+          upperRand <- interval[2]
+        }
+        
+        testLen <- upperRand / 10 - lowRand / 10
+        
+        rands <- sample(lowRand:(upperRand - testLen), cnt)
+        
+        for(x in c(1:cnt)){
+          
+          lowerBound <- rands[x]
+          upperBound <- lowerBound + testLen
+          
+          if(lowerBound < upperBound){
+            
+            swapAux <- upperBound
+            upperBound <- lowerBound
+            lowerBoud <- swapAux
+          }
+          
+          if(integrate(Vectorize(f), lower = lowerBound, upper = upperBound)$value < 0)
+            return(FALSE)
+        }
         
       }
       
@@ -74,5 +98,6 @@ exponentialBroken <- function(x){
 }
 
 print(isPdf(exponential, list(c(0, Inf))))
-print(isPdf(exponentialBroken))
+print(isPdf(exponentialBroken, list(c(0, Inf))))
+print(isPdf(sin))
 
