@@ -16,7 +16,7 @@
 #           nu vor afecta calculul probabilitatilor
 #
 
-isPdf <- function(f, suport = list(c(-Inf, Inf)), TCNT = 1000){
+isPdf <- function(f, suport = list(c(-Inf, Inf)), normCt = 1, TCNT = 1000){
   
   tryCatch({
     
@@ -26,8 +26,8 @@ isPdf <- function(f, suport = list(c(-Inf, Inf)), TCNT = 1000){
 
       integratedVal <- integratedVal + integrate(Vectorize(f), lower = interval[1], upper = interval[2])$value
     }
-  
-    if(integratedVal < 1 + 10e-9 & integratedVal > 1 - 10e-9){
+    
+    if((integratedVal / normCt) < 1 + 10e-9 & (integratedVal / normCt) > 1 - 10e-9){
       
       cnt <- TCNT / length(suport)
       
@@ -97,7 +97,7 @@ exponentialBroken <- function(x){
   return(2 * exp(-2 * x))
 }
 
-print(isPdf(exponential, list(c(0, Inf))))
+print(isPdf(exponential, normCt = 1))
 print(isPdf(exponentialBroken, list(c(0, Inf))))
 print(isPdf(sin))
 
