@@ -1,5 +1,9 @@
 normalPdf <- function(x, expectedVal = 0, deviation = 1){
-  return((1 / sqrt(2 * pi)) * exp((-1 / 2) * ((x - expectedVal) / (deviation * deviation))))
+  return((1 / (deviation * sqrt(2 * pi))) * exp((-1 / 2) * ((x - expectedVal) * (x - expectedVal) / (deviation * deviation))))
+}
+
+normalPdfStd <- function(x){
+  return((1 / sqrt(2 * pi)) * exp(-(x * x)/2))
 }
 
 E <- function(pdf, normCt = 1){
@@ -15,8 +19,7 @@ E <- function(pdf, normCt = 1){
   },
   error = function(err){
     
-    message("Eroare la calcularea mediei:")
-    print(err)
+    message(paste("Eroare la calcularea mediei:", err))
   })
 }
 
@@ -55,7 +58,7 @@ setMethod("initialize", "ConRV", function(.Object, pdfCandidate, normCt, normali
     
     if(missing(pdfCandidate)){
       
-      rv@pdf = normalPdf
+      rv@pdf = normalPdfStd
       rv@normCt = 1
       
       rv@expectedVal = 0
@@ -126,18 +129,46 @@ setMethod("initialize", "ConRV", function(.Object, pdfCandidate, normCt, normali
   },
   error = function(err){
     
-    message("eroare la initializarea variabilei:")
-    print(err)
+    message(paste("eroare la initializarea variabilei:", err))
   })
   
 })
 
+getP <- function(object, lowerBound, upperBound) message(paste("obiectul", object, "nu apartine de clasa ConRV!"))
+
+setMethod("getP", "ConRV", function(object, lowerBound, upperBound){
+  
+  tryCatch({
+    
+    probability <- integrate(Vectorize(object@pdf), lower = lowerBound, upper = upperBound)
+    return(probability$value)
+  },
+  error = function(err){
+    
+    message(paste("eroare la calcularea probabilitatii:", err))
+  })
+    
+})
+
+getCumulativeP <- function(object, x) message(paste("obiectul", object, "nu apartine de clasa ConRV!"))
+
+setMethod("getCumulativeP", "ConRV", function(object, x){
+  
+  tryCatch({
+    
+    probability <- integrate(Vectorize(object@pdf), lower = -Inf, upper = x)
+    return(probability$value)
+  },
+  error = function(err){
+    
+    message(paste("eroare la calcularea probabilitatii:", err))
+  })
+  
+})
+
+
 v <- ConRV(pdfCandidate = exponential)
+vnorm <- ConRV()
 
-print(v)
-
-
-
-
-
-
+getCumulativeP(v, 0)
+getP(vnorm, -2000, 0)

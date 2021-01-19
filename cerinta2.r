@@ -14,7 +14,7 @@
 #     NOTA: aleg sa integrez in loc sa verific direct valori,
 #           deoarece in cel mai rau caz, daca am doar cateva valori negative rare
 #           nu vor afecta calculul probabilitatilor
-#
+# 
 
 isPdf <- function(f, suport = list(c(-Inf, Inf)), normCt = 1, TCNT = 1000){
   
@@ -52,14 +52,14 @@ isPdf <- function(f, suport = list(c(-Inf, Inf)), normCt = 1, TCNT = 1000){
         
         testLen <- upperRand / 10 - lowRand / 10
         
-        rands <- sample(lowRand:(upperRand - testLen), cnt)
+        rands <- runif(cnt, lowRand, upperRand - testLen)
         
         for(x in c(1:cnt)){
           
           lowerBound <- rands[x]
-          upperBound <- lowerBound + testLen
+          upperBound = lowerBound + testLen
           
-          if(lowerBound < upperBound){
+          if(lowerBound > upperBound){
             
             swapAux <- upperBound
             upperBound <- lowerBound
@@ -80,8 +80,7 @@ isPdf <- function(f, suport = list(c(-Inf, Inf)), normCt = 1, TCNT = 1000){
   },
   error = function(err){
     
-    message("(eroare a functiei isPdf)")
-    print(err)
+    message(paste("eroare a functiei isPdf: ", err))
     return(FALSE)
   })
   
@@ -98,6 +97,6 @@ exponentialBroken <- function(x){
 }
 
 print(isPdf(exponential, normCt = 1))
-print(isPdf(exponentialBroken, list(c(0, Inf))))
+print(isPdf(exponentialBroken, suport = list(c(0, Inf))))
 print(isPdf(sin))
 
