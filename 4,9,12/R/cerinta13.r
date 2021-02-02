@@ -1,5 +1,3 @@
-# Cerin??a 13
-
 #' Sum of two random discrete variables using convolution formula
 #'
 #' This function calculates the sum of two random discrete variables X and Y, returning the PDF of Z = X + Y.

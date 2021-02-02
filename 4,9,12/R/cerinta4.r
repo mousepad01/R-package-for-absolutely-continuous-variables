@@ -13,7 +13,7 @@ inverse <- function (f, u, lower = -100, upper = 100) {
     expr = {
       uniroot((function (x) f(x) - u), lower = lower, upper = upper, extendInt = 'yes')
     },
-    
+
     error = function (e) {
       print(e)
     }
@@ -25,26 +25,26 @@ inverse <- function (f, u, lower = -100, upper = 100) {
 #' This functions plots the PDF for a random discrete variable.
 #' @param x_min The lower part of the PDF's domain.
 #' @param x_max The upper part of the PDF's domain.
-#' @keywords plot pdf plotpdf
+#' @keywords plot pdf plotpdf probability density function
 #' @export
 plotPDF <- function(x_min, x_max) {
   t <- seq(x_min, x_max, 0.0075)
-  plot (t, f (t), col = 'red', main = 'Densitatea de probabilitate', xlab = 'x', ylab = 'y')
+  plot (t, f (t), col = 'red', main = 'Probability Density Function', xlab = 'x', ylab = 'y')
 }
 
 #' Integrate PDF
 #'
-#' This functions integrates the PDF. It can be used to get the CDF.
+#' This functions integrates the PDF. It can be used to calculate the CDF in a certain point.
 #' @param X The point in which the integral will be calculated.
 #' @return The value of the integral calculated.
-#' @keywords plot cdf plotcdf
+#' @keywords integrate pdf probability density function cumulative distribution function
 #' @export
 integratePDF <- function (X) {
   tryCatch (
     expr = {
       integrate (f, 0, X)$value
     },
-    
+
     error = function (e) {
       print(e)
     }
@@ -56,7 +56,7 @@ integratePDF <- function (X) {
 #' This functions plots the CDF for a random discrete variable.
 #' @param x_min The minimum point of the range over which the function will be plotted.
 #' @param x_max The maximum point of the range over which the function will be plotted.
-#' @keywords plot cdf plotcdf
+#' @keywords plot cdf plotcdf cumulative distribution function
 #' @export
 plotCDF <- function(x_min, x_max) {
   t <- seq(x_min, x_max, 0.0075)
@@ -64,5 +64,5 @@ plotCDF <- function(x_min, x_max) {
   for (v in t) {
     s = append (s, integratePDF (v))
   }
-  plot (t, s, col = 'blue', main = 'Func??ia de reparti??ie', xlab = 'x', ylab = 'y')
+  plot (t, s, col = 'blue', main = 'Cumulative Distribution Function', xlab = 'x', ylab = 'y')
 }

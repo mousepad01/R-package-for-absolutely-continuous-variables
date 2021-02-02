@@ -15,5 +15,8 @@ plotCDF(x_min, x_max)
 This functions plots the CDF for a random discrete variable.
 }
 \keyword{cdf}
+\keyword{cumulative}
+\keyword{distribution}
+\keyword{function}
 \keyword{plot}
 \keyword{plotcdf}

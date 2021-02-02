@@ -14,7 +14,7 @@ randomVariableGenerator(n, x_min, x_max)
 \item{lower}{The upper part of the domain of the PDF of the variable.}
 }
 \value{
-An array containin n random variables.
+An array with n random generated values.
 }
 \description{
 This function calculates a set of n random variables using the inverse method.

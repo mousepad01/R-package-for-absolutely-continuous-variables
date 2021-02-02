@@ -13,8 +13,12 @@ integratePDF(X)
 The value of the integral calculated.
 }
 \description{
-This functions integrates the PDF. It can be used to get the CDF.
+This functions integrates the PDF. It can be used to calculate the CDF in a certain point.
 }
-\keyword{cdf}
-\keyword{plot}
-\keyword{plotcdf}
+\keyword{cumulative}
+\keyword{density}
+\keyword{distribution}
+\keyword{function}
+\keyword{integrate}
+\keyword{pdf}
+\keyword{probability}

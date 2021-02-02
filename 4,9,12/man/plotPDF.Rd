@@ -14,6 +14,9 @@ plotPDF(x_min, x_max)
 \description{
 This functions plots the PDF for a random discrete variable.
 }
+\keyword{density}
+\keyword{function}
 \keyword{pdf}
 \keyword{plot}
 \keyword{plotpdf}
+\keyword{probability}
