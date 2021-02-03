@@ -21,7 +21,7 @@ DistributionsSynthesis <- function(name) {
     The uniform distribution is a continuous probability distribution and is concerned with events that are equally likely to occur. The continuous random variable X is said to be
     uniformly distributed, or having rectangular distribution on the interval [a,b]. "
   }
-  else if (nume == "Gamma") {
+  else if (name == "Gamma") {
     parameters <- "alpha, beta"
     rage <- "(0, inf)"
     notation <- "Gamma(alpha, beta)"
@@ -36,7 +36,7 @@ DistributionsSynthesis <- function(name) {
     meteorology (rainfall), and business (insurance claims and loan defaults) for which the variables are always positive
     and the results are skewed (unbalanced)."
   }
-  else if (nume == "Beta") {
+  else if (name == "Beta") {
     parameters <- "alpha > 0, beta > 0"
     range <- "(0, 1)"
     notation <- "Beta(alpha, beta)"
@@ -49,7 +49,7 @@ DistributionsSynthesis <- function(name) {
     the conversion rate of customers actually purchasing on your website, how likely readers will clap for your blog, how likely it is that Ta president will win a second term,
     the 5-year survival chance for women with breast cancer, and so on.Because the Beta distribution models a probability, its domain is bounded between 0 and 1."
   }
-  else if (nume == "Exponential") {
+  else if (name == "Exponential") {
     parameters <- "lambda = λ"
     range <- "[0, inf)"
     notation <- "exponential(λ) or exp(λ); λ>0"
@@ -65,7 +65,7 @@ DistributionsSynthesis <- function(name) {
     In queuing theory, the service times of agents in a system (e.g. how long it takes for a bank teller etc. to
     serve a customer) are often modeled as exponentially distributed variables."
   }
-  else if (nume == "Chi-Square") {
+  else if (name == "Chi-Square") {
     parameters <- "k, a natural number different from 0"
     range <- "if k == 1 then (0, int) otherwise [0, inf)"
     notation <- "ChiSquare(k) or H(k)"
@@ -79,7 +79,7 @@ DistributionsSynthesis <- function(name) {
     estimation for a population standard deviation of a normal distribution from a sample standard deviation.
     Many other statistical tests also use this distribution, such as Friedman's analysis of variance by ranks."
   }
-  else if (nume == "StudentsT") {
+  else if (name == "StudentsT") {
     parameters <- "v, v > 0"
     range <- "(-inf, inf)"
     notation <- "S(v)"
@@ -95,7 +95,7 @@ DistributionsSynthesis <- function(name) {
     estimation. In most such problems, if the standard deviation of the errors were known, a normal distribution would be used
     instead of the t-distribution."
   }
-  else if (nume == "Normal") {
+  else if (name == "Normal") {
     parameters <- "μ = miu, σ = sigma"
     range <- "(-inf, inf)"
     notation <- "normal(μ, σ2) or N(μ, σ2)"
@@ -120,7 +120,7 @@ DistributionsSynthesis <- function(name) {
 
   cat("Sources used: https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading5c.pdf
       \n https://www.probabilitycourse.com/chapter4/  \n https://www.britannica.com/science/gamma-distribution \n https://www.britannica.com/science/ \n https://towardsdatascience.com/ \n",
-      "\n\nNotation:\n", parameters, "\n\nNotation:\n", range , "\n\nPDF:\n", notation, "\n\nRange:\n", pdf, "\n\nCDF:\n", cdf, "\n\nMean:\n", mean, "\n\nMedian:\n",
+      "\n\nNotation:\n", notation, "\n\nParameters:\n", parameters, "\n\nRange:\n", range , "\n\nPDF:\n", pdf, "\n\nCDF:\n", cdf, "\n\nMean:\n", mean, "\n\nMedian:\n",
       median, "\n\nVariance:\n", variance, "\n\nUse:\n", use, "\n")
 
 }
