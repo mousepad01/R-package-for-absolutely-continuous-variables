@@ -4,15 +4,19 @@
 \alias{plotPDF}
 \title{Plot PDF}
 \usage{
-plotPDF(x_min, x_max)
+plotPDF(f, x_min, x_max)
 }
 \arguments{
-\item{x_min}{The lower part of the PDF's domain.}
+\item{f}{The PDF for a continuous random variable.}
 
-\item{x_max}{The upper part of the PDF's domain.}
+\item{x_min, x_max}{The range over which the PDF will be plotted.}
 }
 \description{
-This functions plots the PDF for a random discrete variable.
+This functions plots the PDF for a continuous random variable.
+}
+\examples{
+f <- function(x) (1/2 * sin (x)) * (0 < x & x <= pi)
+plotPDF(f, 0, pi)
 }
 \keyword{density}
 \keyword{function}
