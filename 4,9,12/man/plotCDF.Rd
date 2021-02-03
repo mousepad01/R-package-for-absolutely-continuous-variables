@@ -4,15 +4,19 @@
 \alias{plotCDF}
 \title{Plot CDF}
 \usage{
-plotCDF(x_min, x_max)
+plotCDF(f, x_min, x_max)
 }
 \arguments{
-\item{x_min}{The minimum point of the range over which the function will be plotted.}
+\item{f}{The PDF for a continuous random variable.}
 
-\item{x_max}{The maximum point of the range over which the function will be plotted.}
+\item{x_min, x_max}{The range over which the CDF will be plotted.}
 }
 \description{
 This functions plots the CDF for a random discrete variable.
+}
+\examples{
+f <- function(x) (1/2 * sin (x)) * (0 < x & x <= pi)
+plotCDF(f, 0, pi)
 }
 \keyword{cdf}
 \keyword{cumulative}

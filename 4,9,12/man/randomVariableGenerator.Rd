@@ -4,20 +4,24 @@
 \alias{randomVariableGenerator}
 \title{Random Variable Generation Function}
 \usage{
-randomVariableGenerator(n, x_min, x_max)
+randomVariableGenerator(f, n, x_min, x_max)
 }
 \arguments{
+\item{f}{The PDF used to generate n variables.}
+
 \item{n}{The number of the variables to be generated.}
 
-\item{x_min}{The lower part of the domain of the PDF of the variable.}
-
-\item{lower}{The upper part of the domain of the PDF of the variable.}
+\item{x_min, x_max}{The PDF's domain range.}
 }
 \value{
 An array with n random generated values.
 }
 \description{
 This function calculates a set of n random variables using the inverse method.
+}
+\examples{
+f <- function(x) (1/2 * sin (x)) * (0 < x & x <= pi)
+randomVariableGenerator (f, 100, 0, pi)
 }
 \keyword{generation}
 \keyword{pdf}

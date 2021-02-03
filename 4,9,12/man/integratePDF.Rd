@@ -4,16 +4,18 @@
 \alias{integratePDF}
 \title{Integrate PDF}
 \usage{
-integratePDF(X)
+integratePDF(f, X)
 }
 \arguments{
+\item{f}{The PDF for a continuous random variable.}
+
 \item{X}{The point in which the integral will be calculated.}
 }
 \value{
 The value of the integral calculated.
 }
 \description{
-This functions integrates the PDF. It can be used to calculate the CDF in a certain point.
+This functions integrates the PDF of a certain continuous random variable. It can be used to calculate the CDF for that variable in a certain point.
 }
 \keyword{cumulative}
 \keyword{density}

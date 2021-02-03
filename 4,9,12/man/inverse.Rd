@@ -7,9 +7,7 @@
 inverse(f, u, lower = -100, upper = 100)
 }
 \arguments{
-\item{lower}{The lower part of the codomain.}
-
-\item{upper}{The upper part of the codomain.}
+\item{lower, upper}{The codomain's range.}
 
 \item{f(x)}{A function.}
 

@@ -17,6 +17,12 @@ PDF of the variable Z = X + Y.
 \description{
 This function calculates the sum of two random discrete variables X and Y, returning the PDF of Z = X + Y.
 }
+\examples{
+x <- function(t) dnorm(t, 1, 0.5)
+y <- function(t) dlnorm(t, 1.5, 0.75)
+z <- convolutionSum(x, y)
+z <- Vectorize(z)
+}
 \keyword{convolution}
 \keyword{discrete}
 \keyword{random}
