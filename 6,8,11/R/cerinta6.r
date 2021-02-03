@@ -43,7 +43,7 @@ ExecuteMeanDispersion <- function(g, densityFunction, lowerBound, upperBound){
 #' @param m parametru optional
 #' @return media si dispersia
 #' @examples
-#' ComputeMeanDispersion (function(x){return(x^4 + 5)}, function(x){return 1/(1-0.5)}, 1, 0.5)
+#' ComputeMeanDispersion (function(x){return(x^4 + 5)}, "rUniforma")
 ComputeMeanDispersion <- function (g ,nume = "", a = 0, b = 0, n = 0, lambda = 0, sigma = 0, m = 0){
   if (nume == "rUniforma"){
     rUniforma <- function (x) {
